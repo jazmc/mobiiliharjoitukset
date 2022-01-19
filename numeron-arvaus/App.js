@@ -7,9 +7,12 @@ export default function App() {
   );
   const [arvaus, setArvaus] = useState("");
   const [laatu, setLaatu] = useState("");
+  const [lkm, setLkm] = useState(0);
 
   const arvaa = () => {
+    setLkm(lkm + 1);
     if (arvattava == parseInt(arvaus)) {
+      alert("Arvasit oikein " + lkm + " yrityksellä!");
       setLaatu("Arvaus oli oikein!!! Uusi luku arvottu.");
       setArvattava(
         Math.floor(
@@ -17,6 +20,7 @@ export default function App() {
         )
       );
       setArvaus("");
+      setLkm(0);
     } else if (parseInt(arvaus) < arvattava) {
       setLaatu("Arvaus oli liian pieni.");
       setArvaus("");
