@@ -3,7 +3,9 @@ import { StyleSheet, TextInput, View, Text, Pressable } from "react-native";
 
 export default function App() {
   const [arvattava, setArvattava] = useState(
-    Math.floor(Math.random() * (Math.floor(100) - Math.ceil(1)) + Math.ceil(1))
+    Math.floor(
+      Math.random() * (Math.floor(100) - Math.ceil(1) + 1) + Math.ceil(1)
+    )
   );
   const [arvaus, setArvaus] = useState("");
   const [laatu, setLaatu] = useState("");
@@ -16,7 +18,7 @@ export default function App() {
       setLaatu("Arvaus oli oikein!!! Uusi luku arvottu.");
       setArvattava(
         Math.floor(
-          Math.random() * (Math.floor(100) - Math.ceil(1)) + Math.ceil(1)
+          Math.random() * (Math.floor(100) - Math.ceil(1) + 1) + Math.ceil(1)
         )
       );
       setArvaus("");
