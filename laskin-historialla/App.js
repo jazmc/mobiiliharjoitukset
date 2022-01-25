@@ -13,13 +13,15 @@ export default function App() {
   const [nr2, setNr2] = useState(null);
   const [result, setResult] = useState();
   const [history, setHistory] = useState([]);
+  const [luku, setLuku] = useState(0);
 
   const summaa = () => {
-    console.log(history);
+    setLuku(luku + 1);
     setResult(parseInt(nr1) + parseInt(nr2));
     setHistory([
       ...history,
       {
+        id: luku,
         lasku:
           parseInt(nr1) +
           " + " +
@@ -31,11 +33,13 @@ export default function App() {
   };
 
   const vahenna = () => {
-    console.log(history);
+    setLuku(luku + 1);
+    history.reverse();
     setResult(parseInt(nr1) - parseInt(nr2));
     setHistory([
       ...history,
       {
+        id: luku,
         lasku:
           parseInt(nr1) +
           " - " +
@@ -86,16 +90,26 @@ export default function App() {
           <Text>-</Text>
         </Pressable>
       </View>
+      <Text style={styles.titleText}>Historia:</Text>
       <FlatList
-        data={history.reverse()}
-        renderItem={({ item }) => <Text>{item.lasku}</Text>}
-        keyExtractor={(item, index) => index}
+        data={history.sort((a, b) => (a.id > b.id ? -1 : 1))}
+        renderItem={({ item }) => (
+          <View style={styles.kesk}>
+            <Text>{item.lasku}</Text>
+          </View>
+        )}
+        keyExtractor={(item) => item.id}
+        style={styles.flatList}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  kesk: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
   button: {
     backgroundColor: "#2196f3",
     padding: 20,
@@ -121,5 +135,10 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 20,
+  },
+  flatList: {
+    height: 200,
+    width: 80 + "%",
+    flexGrow: 0,
   },
 });
