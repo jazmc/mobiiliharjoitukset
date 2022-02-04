@@ -1,14 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "react-native-gesture-handler";
 
-import {
-  StyleSheet,
-  TextInput,
-  View,
-  Text,
-  Pressable,
-  FlatList,
-} from "react-native";
+import { View, Text, FlatList } from "react-native";
 
 export default function CalculationHistory({ route, navigation }) {
   const history = route.params.history;
