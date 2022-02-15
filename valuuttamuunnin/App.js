@@ -21,8 +21,6 @@ export default function App() {
   }, []);
 
   const hae = () => {
-    console.log(muunnettava);
-    console.log(haluttuvaluutta);
     const summa = muunnettava / haluttuvaluutta;
     setVastaus(summa.toFixed(2));
   };
@@ -62,11 +60,10 @@ export default function App() {
       />
       <Picker
         style={styles.picker}
-        selectedValue={haluttuvaluutta}
         onValueChange={(itemValue, itemIndex) => setHaluttuvaluutta(itemValue)}
       >
-        {Object.keys(valuutat).map((object, index) => (
-          <Picker.Item label={object} value={valuutat[object]} key={index} />
+        {Object.entries(valuutat).map(([key, value], index) => (
+          <Picker.Item label={key} value={value} key={index} />
         ))}
       </Picker>
       <View style={styles.hori}>
