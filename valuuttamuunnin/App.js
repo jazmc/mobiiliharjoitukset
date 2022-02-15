@@ -30,9 +30,7 @@ export default function App() {
   const tyhjenna = () => {
     setMuunnettava("");
     setVastaus("");
-    setHaluttuvaluutta("USD");
-    setValuutat([]);
-    haeValuutat();
+    setHaluttuvaluutta(0);
   };
 
   const haeValuutat = () => {
