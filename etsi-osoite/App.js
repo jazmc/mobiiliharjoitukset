@@ -16,8 +16,8 @@ export default function App() {
   const [paikka, setPaikka] = useState({
     latitude: 37.78825,
     longitude: -122.4324,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
+    latitudeDelta: 0.01,
+    longitudeDelta: 0.01,
   });
 
   const hae = () => {
@@ -34,7 +34,6 @@ export default function App() {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.results == null) {
           alert("No results found! :(");
         } else {
@@ -86,7 +85,7 @@ export default function App() {
 const styles = StyleSheet.create({
   map: {
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
+    height: Dimensions.get("window").height * 0.7,
   },
   image: {
     height: 50,
