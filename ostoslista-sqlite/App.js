@@ -13,7 +13,6 @@ import * as SQLite from "expo-sqlite";
 export default function App() {
   // ostoksen constit
   const [ostos, setOstos] = useState(""); // nimi text
-  //const [ostettu, setOstettu] = useState(""); // kyllä/ei
   const [maara, setMaara] = useState(""); // määrä text
   // listaconst
   const [ostokset, setOstokset] = useState([]);
