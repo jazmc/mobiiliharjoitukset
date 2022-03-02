@@ -31,7 +31,6 @@ export default function App() {
             longitude: sij.coords.longitude,
           });
           alert("Paikannus onnistui!");
-          console.log(sij);
         } else {
           alert("Et ole sallinut sijaintitietojen käyttöä");
         }
