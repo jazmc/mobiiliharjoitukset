@@ -41,7 +41,6 @@ export default function App() {
     const itemsRef = ref(database, "items/");
     onValue(itemsRef, (snapshot) => {
       const data = snapshot.val();
-      console.log(Object.entries(data));
       if (data != null) {
         setOstokset(Object.entries(data));
         setOstos("");
