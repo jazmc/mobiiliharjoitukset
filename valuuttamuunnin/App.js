@@ -9,11 +9,12 @@ import {
   Image,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
+import { Alert } from "react-native-web";
 
 export default function App() {
   const [muunnettava, setMuunnettava] = useState("");
-  const [vastaus, setVastaus] = useState("");
-  const [haluttuvaluutta, setHaluttuvaluutta] = useState(0);
+  const [vastaus, setVastaus] = useState(0);
+  const [haluttuvaluutta, setHaluttuvaluutta] = useState("USD");
   const [valuutat, setValuutat] = useState([]);
 
   useEffect(() => {
@@ -21,14 +22,17 @@ export default function App() {
   }, []);
 
   const hae = () => {
-    const summa = muunnettava / haluttuvaluutta;
-    setVastaus(summa.toFixed(2));
+    if (muunnettava != "") {
+      const summa = muunnettava / valuutat[haluttuvaluutta];
+      setVastaus(summa.toFixed(2));
+    } else {
+      alert("Anna muunnettava summa!");
+    }
   };
 
   const tyhjenna = () => {
     setMuunnettava("");
-    setVastaus("");
-    setHaluttuvaluutta(0);
+    setVastaus(0);
   };
 
   const haeValuutat = () => {
@@ -58,14 +62,7 @@ export default function App() {
         keyboardType={"numeric"}
         placeholder="Muunnettava summa"
       />
-      <Picker
-        style={styles.picker}
-        onValueChange={(itemValue, itemIndex) => setHaluttuvaluutta(itemValue)}
-      >
-        {Object.entries(valuutat).map(([key, value], index) => (
-          <Picker.Item label={key} value={value} key={index} />
-        ))}
-      </Picker>
+
       <View style={styles.hori}>
         <Pressable
           style={styles.button}
@@ -84,11 +81,21 @@ export default function App() {
           <Text>Tyhjennä</Text>
         </Pressable>
       </View>
+      <Picker
+        selectedValue={haluttuvaluutta}
+        style={styles.picker}
+        onValueChange={(itemValue, itemIndex) => setHaluttuvaluutta(itemValue)}
+      >
+        {Object.entries(valuutat).map(([key, value], index) => (
+          <Picker.Item label={key} value={key} key={index} />
+        ))}
+      </Picker>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  picker: { width: 100 + "%", height: 50 },
   image: {
     height: 50,
     width: 50,
