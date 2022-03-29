@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList, Touchable } from "react-native";
 import { Input, Button, ListItem, Icon } from "react-native-elements";
 import * as SQLite from "expo-sqlite";
 
@@ -80,7 +80,12 @@ export default function MyPlaces({ navigation }) {
         style={{ marginLeft: "5%", marginTop: "5%", width: "100%" }}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
-          <ListItem bottomDivider>
+          <ListItem
+            bottomDivider
+            onLongPress={() => {
+              deleteOsoite(item.id);
+            }}
+          >
             <ListItem.Content>
               <ListItem.Title>{item.osoite}</ListItem.Title>
               <ListItem.Subtitle style={styles.grey}>
